@@ -1,0 +1,48 @@
+{% extends 'plutotimesheet/base.html' %}
+{% block title %} Pluto {% endblock %}
+{% block body %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-2 col-md-4 col-lg-4">
+            {% if week %}
+                <ul>
+                {% for w in week %}
+                    <li><a href="#"> {{w.week_start}} - {{w.week_end}} </a> </li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+        <div class="col-sm-10 col-md-8 col-lg-8">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>day</th>
+                                <th>shift</th>
+                                <th>client</th>
+                                <th>address</th>
+                                <th>start</th>
+                                <th>finish</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for time in times %}
+                                <tr>
+                                    <td>{{time.day}}</td>
+                                    <td>{{time.shift}}</td>
+                                    <td>{{time.client}}</td>
+                                    <td>{{time.address}}</td>
+                                    <td>{{time.start}}</td>
+                                    <td>{{time.finish}}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

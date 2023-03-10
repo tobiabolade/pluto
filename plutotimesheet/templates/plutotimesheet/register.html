@@ -1,0 +1,32 @@
+{% extends 'plutotimesheet/base_visitor.html' %}
+{% block title %} Register {% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+
+        <div class="row">
+              <div class="col-sm-12 col-md-6" style="margin:auto">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <h3>Register your account here</h3>
+                        {% if error_message %}
+                        <p><strong>{{ error_message }}</strong></p>
+                        {% endif %}
+                        <form class="form-horizontal" role="form" action="" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {% include 'plutotimesheet/form.html' %}
+                            <div class="col-sm-offset col-sm-2" style="padding-top:10px">
+                                <button type="submit" class="btn btn-success">Submit</button><br/><br/><br/>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="panel-footer bg-secondary text-white">
+                        Already have an account? <a href="{% url 'login' %}"> Login here</a>
+                    </div>
+                </div>
+        </div>
+        </div>
+
+    </div>
+
+{% endblock %}

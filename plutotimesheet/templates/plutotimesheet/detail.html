@@ -1,0 +1,57 @@
+{% extends 'plutotimesheet/base.html' %}
+{% load static %}
+{% block title %}Weeks{% endblock %}
+{% block body %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-2 col-md-4 col-lg-4">
+                {% if weeks %}
+                    <ul>
+                    {% for week in weeks %}
+
+                            <li><a href="{% url 'detail' week_id=week.id %}" class="btn btn-default"> {{week.week_start}} - {{week.week_end}} </a> </li>
+
+                    {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+            <div class="col-sm-10 col-md-8 col-lg-8">
+                <ul class="nav nav-pills" style="margin-bottom: 10px; padding: 20px">
+                    <li role="presentation" class="active" style="padding:10px"><a href="{% url 'detail' week.id %}" class="btn btn-primary">View All</a></li>
+                    <li role="presentation" style="padding:10px"><a href="{% url 'timesheet' week.id %}" class="btn btn-primary">Add New Timesheet</a></li>
+                </ul>
+
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <p>Days done</p>
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>day</th>
+                                <th>shift</th>
+                                <th>client</th>
+                                <th>address</th>
+                                <th>start</th>
+                                <th>finish</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for timesheet in week.timesheet_set.all %}
+                                <tr>
+                                    <td>{{timesheet.day}}</td>
+                                    <td>{{timesheet.shift}}</td>
+                                    <td>{{timesheet.client}}</td>
+                                    <td>{{timesheet.address}}</td>
+                                    <td>{{timesheet.start}}</td>
+                                    <td>{{timesheet.finish}}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
